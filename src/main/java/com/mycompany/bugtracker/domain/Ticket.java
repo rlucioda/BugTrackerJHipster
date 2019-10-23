@@ -38,6 +38,12 @@ public class Ticket implements Serializable {
     @Column(name = "done")
     private Boolean done;
 
+    @Column(name = "status")
+    private Boolean status;
+
+    @Column(name = "txt")
+    private String txt;
+
     @ManyToOne
     @JsonIgnoreProperties("tickets")
     private Project project;
@@ -112,6 +118,32 @@ public class Ticket implements Serializable {
 
     public void setDone(Boolean done) {
         this.done = done;
+    }
+
+    public Boolean isStatus() {
+        return status;
+    }
+
+    public Ticket status(Boolean status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public String getTxt() {
+        return txt;
+    }
+
+    public Ticket txt(String txt) {
+        this.txt = txt;
+        return this;
+    }
+
+    public void setTxt(String txt) {
+        this.txt = txt;
     }
 
     public Project getProject() {
@@ -190,6 +222,8 @@ public class Ticket implements Serializable {
             ", description='" + getDescription() + "'" +
             ", dueDate='" + getDueDate() + "'" +
             ", done='" + isDone() + "'" +
+            ", status='" + isStatus() + "'" +
+            ", txt='" + getTxt() + "'" +
             "}";
     }
 }

@@ -29,6 +29,12 @@ public class Label implements Serializable {
     @Column(name = "label", nullable = false)
     private String label;
 
+    @Column(name = "status")
+    private Boolean status;
+
+    @Column(name = "txt")
+    private String txt;
+
     @ManyToMany(mappedBy = "labels")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JsonIgnore
@@ -54,6 +60,32 @@ public class Label implements Serializable {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public Boolean isStatus() {
+        return status;
+    }
+
+    public Label status(Boolean status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public String getTxt() {
+        return txt;
+    }
+
+    public Label txt(String txt) {
+        this.txt = txt;
+        return this;
+    }
+
+    public void setTxt(String txt) {
+        this.txt = txt;
     }
 
     public Set<Ticket> getTickets() {
@@ -103,6 +135,8 @@ public class Label implements Serializable {
         return "Label{" +
             "id=" + getId() +
             ", label='" + getLabel() + "'" +
+            ", status='" + isStatus() + "'" +
+            ", txt='" + getTxt() + "'" +
             "}";
     }
 }

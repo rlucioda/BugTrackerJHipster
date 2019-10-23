@@ -73,6 +73,8 @@ class LabelGatlingTest extends Simulation {
             .body(StringBody("""{
                 "id":null
                 , "label":"SAMPLE_TEXT"
+                , "status":null
+                , "txt":"SAMPLE_TEXT"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_label_url"))).exitHereIfFailed

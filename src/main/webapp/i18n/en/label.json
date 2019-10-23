@@ -17,6 +17,8 @@
         "title": "Label"
       },
       "label": "Label",
+      "status": "Status",
+      "txt": "Txt",
       "ticket": "Ticket"
     }
   }

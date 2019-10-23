@@ -23,7 +23,9 @@ export class LabelUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    label: [null, [Validators.required, Validators.minLength(3)]]
+    label: [null, [Validators.required, Validators.minLength(3)]],
+    status: [],
+    txt: []
   });
 
   constructor(
@@ -51,7 +53,9 @@ export class LabelUpdateComponent implements OnInit {
   updateForm(label: ILabel) {
     this.editForm.patchValue({
       id: label.id,
-      label: label.label
+      label: label.label,
+      status: label.status,
+      txt: label.txt
     });
   }
 
@@ -73,7 +77,9 @@ export class LabelUpdateComponent implements OnInit {
     return {
       ...new Label(),
       id: this.editForm.get(['id']).value,
-      label: this.editForm.get(['label']).value
+      label: this.editForm.get(['label']).value,
+      status: this.editForm.get(['status']).value,
+      txt: this.editForm.get(['txt']).value
     };
   }
 

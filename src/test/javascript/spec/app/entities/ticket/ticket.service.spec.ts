@@ -24,7 +24,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new Ticket(0, 'AAAAAAA', 'AAAAAAA', currentDate, false);
+      elemDefault = new Ticket(0, 'AAAAAAA', 'AAAAAAA', currentDate, false, false, 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -74,7 +74,9 @@ describe('Service Tests', () => {
             title: 'BBBBBB',
             description: 'BBBBBB',
             dueDate: currentDate.format(DATE_FORMAT),
-            done: true
+            done: true,
+            status: true,
+            txt: 'BBBBBB'
           },
           elemDefault
         );
@@ -100,7 +102,9 @@ describe('Service Tests', () => {
             title: 'BBBBBB',
             description: 'BBBBBB',
             dueDate: currentDate.format(DATE_FORMAT),
-            done: true
+            done: true,
+            status: true,
+            txt: 'BBBBBB'
           },
           elemDefault
         );

@@ -20,6 +20,8 @@
             <tr>
             <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
             <th scope="col" ><span jhiTranslate="bugTrackerJHipsterApp.project.name">Name</span></th>
+            <th scope="col" ><span jhiTranslate="bugTrackerJHipsterApp.project.status">Status</span></th>
+            <th scope="col" ><span jhiTranslate="bugTrackerJHipsterApp.project.txt">Txt</span></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -27,6 +29,8 @@
             <tr *ngFor="let project of projects ;trackBy: trackId">
                 <td><a [routerLink]="['/project', project.id, 'view' ]">{{project.id}}</a></td>
                 <td>{{project.name}}</td>
+                <td>{{project.status}}</td>
+                <td>{{project.txt}}</td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

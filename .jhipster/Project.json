@@ -4,6 +4,14 @@
         {
             "fieldName": "name",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "txt",
+            "fieldType": "String"
         }
     ],
     "relationships": [],

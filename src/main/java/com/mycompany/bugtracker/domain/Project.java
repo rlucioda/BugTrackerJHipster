@@ -23,6 +23,12 @@ public class Project implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "txt")
+    private String txt;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -43,6 +49,32 @@ public class Project implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Project status(String status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTxt() {
+        return txt;
+    }
+
+    public Project txt(String txt) {
+        this.txt = txt;
+        return this;
+    }
+
+    public void setTxt(String txt) {
+        this.txt = txt;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -67,6 +99,8 @@ public class Project implements Serializable {
         return "Project{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", status='" + getStatus() + "'" +
+            ", txt='" + getTxt() + "'" +
             "}";
     }
 }

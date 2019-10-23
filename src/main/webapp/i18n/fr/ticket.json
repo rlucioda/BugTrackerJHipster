@@ -20,6 +20,8 @@
       "description": "Description",
       "dueDate": "Due Date",
       "done": "Done",
+      "status": "Status",
+      "txt": "Txt",
       "project": "Project",
       "assignedTo": "Assigned To",
       "label": "Label"

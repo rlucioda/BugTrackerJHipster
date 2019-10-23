@@ -40,8 +40,14 @@ describe('Project e2e test', () => {
     const nbButtonsBeforeCreate = await projectComponentsPage.countDeleteButtons();
 
     await projectComponentsPage.clickOnCreateButton();
-    await promise.all([projectUpdatePage.setNameInput('name')]);
+    await promise.all([
+      projectUpdatePage.setNameInput('name'),
+      projectUpdatePage.setStatusInput('status'),
+      projectUpdatePage.setTxtInput('txt')
+    ]);
     expect(await projectUpdatePage.getNameInput()).to.eq('name', 'Expected Name value to be equals to name');
+    expect(await projectUpdatePage.getStatusInput()).to.eq('status', 'Expected Status value to be equals to status');
+    expect(await projectUpdatePage.getTxtInput()).to.eq('txt', 'Expected Txt value to be equals to txt');
     await projectUpdatePage.save();
     expect(await projectUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 

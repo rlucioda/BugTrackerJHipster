@@ -36,6 +36,12 @@ public class LabelResourceIT {
     private static final String DEFAULT_LABEL = "AAAAAAAAAA";
     private static final String UPDATED_LABEL = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_STATUS = false;
+    private static final Boolean UPDATED_STATUS = true;
+
+    private static final String DEFAULT_TXT = "AAAAAAAAAA";
+    private static final String UPDATED_TXT = "BBBBBBBBBB";
+
     @Autowired
     private LabelRepository labelRepository;
 
@@ -78,7 +84,9 @@ public class LabelResourceIT {
      */
     public static Label createEntity(EntityManager em) {
         Label label = new Label()
-            .label(DEFAULT_LABEL);
+            .label(DEFAULT_LABEL)
+            .status(DEFAULT_STATUS)
+            .txt(DEFAULT_TXT);
         return label;
     }
     /**
@@ -89,7 +97,9 @@ public class LabelResourceIT {
      */
     public static Label createUpdatedEntity(EntityManager em) {
         Label label = new Label()
-            .label(UPDATED_LABEL);
+            .label(UPDATED_LABEL)
+            .status(UPDATED_STATUS)
+            .txt(UPDATED_TXT);
         return label;
     }
 
@@ -114,6 +124,8 @@ public class LabelResourceIT {
         assertThat(labelList).hasSize(databaseSizeBeforeCreate + 1);
         Label testLabel = labelList.get(labelList.size() - 1);
         assertThat(testLabel.getLabel()).isEqualTo(DEFAULT_LABEL);
+        assertThat(testLabel.isStatus()).isEqualTo(DEFAULT_STATUS);
+        assertThat(testLabel.getTxt()).isEqualTo(DEFAULT_TXT);
     }
 
     @Test
@@ -165,7 +177,9 @@ public class LabelResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(label.getId().intValue())))
-            .andExpect(jsonPath("$.[*].label").value(hasItem(DEFAULT_LABEL)));
+            .andExpect(jsonPath("$.[*].label").value(hasItem(DEFAULT_LABEL)))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.booleanValue())))
+            .andExpect(jsonPath("$.[*].txt").value(hasItem(DEFAULT_TXT)));
     }
     
     @Test
@@ -179,7 +193,9 @@ public class LabelResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(label.getId().intValue()))
-            .andExpect(jsonPath("$.label").value(DEFAULT_LABEL));
+            .andExpect(jsonPath("$.label").value(DEFAULT_LABEL))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.booleanValue()))
+            .andExpect(jsonPath("$.txt").value(DEFAULT_TXT));
     }
 
     @Test
@@ -203,7 +219,9 @@ public class LabelResourceIT {
         // Disconnect from session so that the updates on updatedLabel are not directly saved in db
         em.detach(updatedLabel);
         updatedLabel
-            .label(UPDATED_LABEL);
+            .label(UPDATED_LABEL)
+            .status(UPDATED_STATUS)
+            .txt(UPDATED_TXT);
 
         restLabelMockMvc.perform(put("/api/labels")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -215,6 +233,8 @@ public class LabelResourceIT {
         assertThat(labelList).hasSize(databaseSizeBeforeUpdate);
         Label testLabel = labelList.get(labelList.size() - 1);
         assertThat(testLabel.getLabel()).isEqualTo(UPDATED_LABEL);
+        assertThat(testLabel.isStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testLabel.getTxt()).isEqualTo(UPDATED_TXT);
     }
 
     @Test

@@ -16,7 +16,9 @@
       "detail": {
         "title": "Project"
       },
-      "name": "Name"
+      "name": "Name",
+      "status": "Status",
+      "txt": "Txt"
     }
   }
 }

@@ -21,6 +21,14 @@
                 <dd>
                     <span>{{ticket.done}}</span>
                 </dd>
+                <dt><span jhiTranslate="bugTrackerJHipsterApp.ticket.status">Status</span></dt>
+                <dd>
+                    <span>{{ticket.status}}</span>
+                </dd>
+                <dt><span jhiTranslate="bugTrackerJHipsterApp.ticket.txt">Txt</span></dt>
+                <dd>
+                    <span>{{ticket.txt}}</span>
+                </dd>
                 <dt><span jhiTranslate="bugTrackerJHipsterApp.ticket.project">Project</span></dt>
                 <dd>
                     <div *ngIf="ticket.project">

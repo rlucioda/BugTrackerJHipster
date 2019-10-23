@@ -27,6 +27,8 @@ export class ProjectUpdatePage {
   saveButton = element(by.id('save-entity'));
   cancelButton = element(by.id('cancel-save'));
   nameInput = element(by.id('field_name'));
+  statusInput = element(by.id('field_status'));
+  txtInput = element(by.id('field_txt'));
 
   async getPageTitle() {
     return this.pageTitle.getAttribute('jhiTranslate');
@@ -38,6 +40,22 @@ export class ProjectUpdatePage {
 
   async getNameInput() {
     return await this.nameInput.getAttribute('value');
+  }
+
+  async setStatusInput(status) {
+    await this.statusInput.sendKeys(status);
+  }
+
+  async getStatusInput() {
+    return await this.statusInput.getAttribute('value');
+  }
+
+  async setTxtInput(txt) {
+    await this.txtInput.sendKeys(txt);
+  }
+
+  async getTxtInput() {
+    return await this.txtInput.getAttribute('value');
   }
 
   async save(timeout?: number) {

@@ -37,6 +37,8 @@ export class TicketUpdateComponent implements OnInit {
     description: [],
     dueDate: [],
     done: [],
+    status: [],
+    txt: [],
     project: [],
     assignedTo: [],
     labels: []
@@ -87,6 +89,8 @@ export class TicketUpdateComponent implements OnInit {
       description: ticket.description,
       dueDate: ticket.dueDate,
       done: ticket.done,
+      status: ticket.status,
+      txt: ticket.txt,
       project: ticket.project,
       assignedTo: ticket.assignedTo,
       labels: ticket.labels
@@ -115,6 +119,8 @@ export class TicketUpdateComponent implements OnInit {
       description: this.editForm.get(['description']).value,
       dueDate: this.editForm.get(['dueDate']).value,
       done: this.editForm.get(['done']).value,
+      status: this.editForm.get(['status']).value,
+      txt: this.editForm.get(['txt']).value,
       project: this.editForm.get(['project']).value,
       assignedTo: this.editForm.get(['assignedTo']).value,
       labels: this.editForm.get(['labels']).value

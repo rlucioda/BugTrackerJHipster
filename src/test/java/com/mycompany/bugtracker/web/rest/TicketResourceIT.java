@@ -52,6 +52,12 @@ public class TicketResourceIT {
     private static final Boolean DEFAULT_DONE = false;
     private static final Boolean UPDATED_DONE = true;
 
+    private static final Boolean DEFAULT_STATUS = false;
+    private static final Boolean UPDATED_STATUS = true;
+
+    private static final String DEFAULT_TXT = "AAAAAAAAAA";
+    private static final String UPDATED_TXT = "BBBBBBBBBB";
+
     @Autowired
     private TicketRepository ticketRepository;
 
@@ -100,7 +106,9 @@ public class TicketResourceIT {
             .title(DEFAULT_TITLE)
             .description(DEFAULT_DESCRIPTION)
             .dueDate(DEFAULT_DUE_DATE)
-            .done(DEFAULT_DONE);
+            .done(DEFAULT_DONE)
+            .status(DEFAULT_STATUS)
+            .txt(DEFAULT_TXT);
         return ticket;
     }
     /**
@@ -114,7 +122,9 @@ public class TicketResourceIT {
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION)
             .dueDate(UPDATED_DUE_DATE)
-            .done(UPDATED_DONE);
+            .done(UPDATED_DONE)
+            .status(UPDATED_STATUS)
+            .txt(UPDATED_TXT);
         return ticket;
     }
 
@@ -142,6 +152,8 @@ public class TicketResourceIT {
         assertThat(testTicket.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testTicket.getDueDate()).isEqualTo(DEFAULT_DUE_DATE);
         assertThat(testTicket.isDone()).isEqualTo(DEFAULT_DONE);
+        assertThat(testTicket.isStatus()).isEqualTo(DEFAULT_STATUS);
+        assertThat(testTicket.getTxt()).isEqualTo(DEFAULT_TXT);
     }
 
     @Test
@@ -196,7 +208,9 @@ public class TicketResourceIT {
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
             .andExpect(jsonPath("$.[*].dueDate").value(hasItem(DEFAULT_DUE_DATE.toString())))
-            .andExpect(jsonPath("$.[*].done").value(hasItem(DEFAULT_DONE.booleanValue())));
+            .andExpect(jsonPath("$.[*].done").value(hasItem(DEFAULT_DONE.booleanValue())))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.booleanValue())))
+            .andExpect(jsonPath("$.[*].txt").value(hasItem(DEFAULT_TXT)));
     }
     
     @SuppressWarnings({"unchecked"})
@@ -246,7 +260,9 @@ public class TicketResourceIT {
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
             .andExpect(jsonPath("$.dueDate").value(DEFAULT_DUE_DATE.toString()))
-            .andExpect(jsonPath("$.done").value(DEFAULT_DONE.booleanValue()));
+            .andExpect(jsonPath("$.done").value(DEFAULT_DONE.booleanValue()))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.booleanValue()))
+            .andExpect(jsonPath("$.txt").value(DEFAULT_TXT));
     }
 
     @Test
@@ -273,7 +289,9 @@ public class TicketResourceIT {
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION)
             .dueDate(UPDATED_DUE_DATE)
-            .done(UPDATED_DONE);
+            .done(UPDATED_DONE)
+            .status(UPDATED_STATUS)
+            .txt(UPDATED_TXT);
 
         restTicketMockMvc.perform(put("/api/tickets")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -288,6 +306,8 @@ public class TicketResourceIT {
         assertThat(testTicket.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testTicket.getDueDate()).isEqualTo(UPDATED_DUE_DATE);
         assertThat(testTicket.isDone()).isEqualTo(UPDATED_DONE);
+        assertThat(testTicket.isStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testTicket.getTxt()).isEqualTo(UPDATED_TXT);
     }
 
     @Test

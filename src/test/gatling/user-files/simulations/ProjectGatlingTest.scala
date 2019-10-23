@@ -73,6 +73,8 @@ class ProjectGatlingTest extends Simulation {
             .body(StringBody("""{
                 "id":null
                 , "name":"SAMPLE_TEXT"
+                , "status":"SAMPLE_TEXT"
+                , "txt":"SAMPLE_TEXT"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_project_url"))).exitHereIfFailed

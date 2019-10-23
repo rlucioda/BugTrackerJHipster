@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(LabelService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Label(0, 'AAAAAAA');
+      elemDefault = new Label(0, 'AAAAAAA', false, 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -56,7 +56,9 @@ describe('Service Tests', () => {
       it('should update a Label', () => {
         const returnedFromService = Object.assign(
           {
-            label: 'BBBBBB'
+            label: 'BBBBBB',
+            status: true,
+            txt: 'BBBBBB'
           },
           elemDefault
         );
@@ -74,7 +76,9 @@ describe('Service Tests', () => {
       it('should return a list of Label', () => {
         const returnedFromService = Object.assign(
           {
-            label: 'BBBBBB'
+            label: 'BBBBBB',
+            status: true,
+            txt: 'BBBBBB'
           },
           elemDefault
         );

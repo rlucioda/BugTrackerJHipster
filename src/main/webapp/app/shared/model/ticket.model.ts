@@ -9,6 +9,8 @@ export interface ITicket {
   description?: string;
   dueDate?: Moment;
   done?: boolean;
+  status?: boolean;
+  txt?: string;
   project?: IProject;
   assignedTo?: IUser;
   labels?: ILabel[];
@@ -21,10 +23,13 @@ export class Ticket implements ITicket {
     public description?: string,
     public dueDate?: Moment,
     public done?: boolean,
+    public status?: boolean,
+    public txt?: string,
     public project?: IProject,
     public assignedTo?: IUser,
     public labels?: ILabel[]
   ) {
     this.done = this.done || false;
+    this.status = this.status || false;
   }
 }

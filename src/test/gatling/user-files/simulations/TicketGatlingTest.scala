@@ -76,6 +76,8 @@ class TicketGatlingTest extends Simulation {
                 , "description":"SAMPLE_TEXT"
                 , "dueDate":"2020-01-01T00:00:00.000Z"
                 , "done":null
+                , "status":null
+                , "txt":"SAMPLE_TEXT"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_ticket_url"))).exitHereIfFailed

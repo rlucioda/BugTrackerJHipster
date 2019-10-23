@@ -36,6 +36,12 @@ public class ProjectResourceIT {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
+    private static final String DEFAULT_STATUS = "AAAAAAAAAA";
+    private static final String UPDATED_STATUS = "BBBBBBBBBB";
+
+    private static final String DEFAULT_TXT = "AAAAAAAAAA";
+    private static final String UPDATED_TXT = "BBBBBBBBBB";
+
     @Autowired
     private ProjectRepository projectRepository;
 
@@ -78,7 +84,9 @@ public class ProjectResourceIT {
      */
     public static Project createEntity(EntityManager em) {
         Project project = new Project()
-            .name(DEFAULT_NAME);
+            .name(DEFAULT_NAME)
+            .status(DEFAULT_STATUS)
+            .txt(DEFAULT_TXT);
         return project;
     }
     /**
@@ -89,7 +97,9 @@ public class ProjectResourceIT {
      */
     public static Project createUpdatedEntity(EntityManager em) {
         Project project = new Project()
-            .name(UPDATED_NAME);
+            .name(UPDATED_NAME)
+            .status(UPDATED_STATUS)
+            .txt(UPDATED_TXT);
         return project;
     }
 
@@ -114,6 +124,8 @@ public class ProjectResourceIT {
         assertThat(projectList).hasSize(databaseSizeBeforeCreate + 1);
         Project testProject = projectList.get(projectList.size() - 1);
         assertThat(testProject.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testProject.getStatus()).isEqualTo(DEFAULT_STATUS);
+        assertThat(testProject.getTxt()).isEqualTo(DEFAULT_TXT);
     }
 
     @Test
@@ -147,7 +159,9 @@ public class ProjectResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(project.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)));
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS)))
+            .andExpect(jsonPath("$.[*].txt").value(hasItem(DEFAULT_TXT)));
     }
     
     @Test
@@ -161,7 +175,9 @@ public class ProjectResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(project.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS))
+            .andExpect(jsonPath("$.txt").value(DEFAULT_TXT));
     }
 
     @Test
@@ -185,7 +201,9 @@ public class ProjectResourceIT {
         // Disconnect from session so that the updates on updatedProject are not directly saved in db
         em.detach(updatedProject);
         updatedProject
-            .name(UPDATED_NAME);
+            .name(UPDATED_NAME)
+            .status(UPDATED_STATUS)
+            .txt(UPDATED_TXT);
 
         restProjectMockMvc.perform(put("/api/projects")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -197,6 +215,8 @@ public class ProjectResourceIT {
         assertThat(projectList).hasSize(databaseSizeBeforeUpdate);
         Project testProject = projectList.get(projectList.size() - 1);
         assertThat(testProject.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testProject.getStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testProject.getTxt()).isEqualTo(UPDATED_TXT);
     }
 
     @Test

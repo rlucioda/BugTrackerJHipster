@@ -30,6 +30,8 @@ export class TicketUpdatePage {
   descriptionInput = element(by.id('field_description'));
   dueDateInput = element(by.id('field_dueDate'));
   doneInput = element(by.id('field_done'));
+  statusInput = element(by.id('field_status'));
+  txtInput = element(by.id('field_txt'));
   projectSelect = element(by.id('field_project'));
   assignedToSelect = element(by.id('field_assignedTo'));
   labelSelect = element(by.id('field_label'));
@@ -64,6 +66,16 @@ export class TicketUpdatePage {
 
   getDoneInput(timeout?: number) {
     return this.doneInput;
+  }
+  getStatusInput(timeout?: number) {
+    return this.statusInput;
+  }
+  async setTxtInput(txt) {
+    await this.txtInput.sendKeys(txt);
+  }
+
+  async getTxtInput() {
+    return await this.txtInput.getAttribute('value');
   }
 
   async projectSelectLastOption(timeout?: number) {

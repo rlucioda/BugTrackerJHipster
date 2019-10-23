@@ -40,8 +40,17 @@ describe('Label e2e test', () => {
     const nbButtonsBeforeCreate = await labelComponentsPage.countDeleteButtons();
 
     await labelComponentsPage.clickOnCreateButton();
-    await promise.all([labelUpdatePage.setLabelInput('label')]);
+    await promise.all([labelUpdatePage.setLabelInput('label'), labelUpdatePage.setTxtInput('txt')]);
     expect(await labelUpdatePage.getLabelInput()).to.eq('label', 'Expected Label value to be equals to label');
+    const selectedStatus = labelUpdatePage.getStatusInput();
+    if (await selectedStatus.isSelected()) {
+      await labelUpdatePage.getStatusInput().click();
+      expect(await labelUpdatePage.getStatusInput().isSelected(), 'Expected status not to be selected').to.be.false;
+    } else {
+      await labelUpdatePage.getStatusInput().click();
+      expect(await labelUpdatePage.getStatusInput().isSelected(), 'Expected status to be selected').to.be.true;
+    }
+    expect(await labelUpdatePage.getTxtInput()).to.eq('txt', 'Expected Txt value to be equals to txt');
     await labelUpdatePage.save();
     expect(await labelUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 

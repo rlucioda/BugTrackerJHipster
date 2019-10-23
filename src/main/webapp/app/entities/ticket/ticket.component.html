@@ -23,6 +23,8 @@
             <th scope="col"  jhiSortBy="description"><span jhiTranslate="bugTrackerJHipsterApp.ticket.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="dueDate"><span jhiTranslate="bugTrackerJHipsterApp.ticket.dueDate">Due Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="done"><span jhiTranslate="bugTrackerJHipsterApp.ticket.done">Done</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="status"><span jhiTranslate="bugTrackerJHipsterApp.ticket.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="txt"><span jhiTranslate="bugTrackerJHipsterApp.ticket.txt">Txt</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="project.name"><span jhiTranslate="bugTrackerJHipsterApp.ticket.project">Project</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="assignedTo.login"><span jhiTranslate="bugTrackerJHipsterApp.ticket.assignedTo">Assigned To</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"></th>
@@ -35,6 +37,8 @@
                 <td>{{ticket.description}}</td>
                 <td>{{ticket.dueDate | date:'mediumDate'}}</td>
                 <td>{{ticket.done}}</td>
+                <td>{{ticket.status}}</td>
+                <td>{{ticket.txt}}</td>
                 <td>
                     <div *ngIf="ticket.project">
                         <a [routerLink]="['/project', ticket.project?.id, 'view' ]" >{{ticket.project?.name}}</a>

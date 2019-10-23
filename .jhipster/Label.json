@@ -9,6 +9,14 @@
                 "minlength"
             ],
             "fieldValidateRulesMinlength": 3
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "txt",
+            "fieldType": "String"
         }
     ],
     "relationships": [

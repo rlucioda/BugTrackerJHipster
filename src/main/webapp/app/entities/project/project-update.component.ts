@@ -17,7 +17,9 @@ export class ProjectUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    name: []
+    name: [],
+    status: [],
+    txt: []
   });
 
   constructor(protected projectService: ProjectService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -32,7 +34,9 @@ export class ProjectUpdateComponent implements OnInit {
   updateForm(project: IProject) {
     this.editForm.patchValue({
       id: project.id,
-      name: project.name
+      name: project.name,
+      status: project.status,
+      txt: project.txt
     });
   }
 
@@ -54,7 +58,9 @@ export class ProjectUpdateComponent implements OnInit {
     return {
       ...new Project(),
       id: this.editForm.get(['id']).value,
-      name: this.editForm.get(['name']).value
+      name: this.editForm.get(['name']).value,
+      status: this.editForm.get(['status']).value,
+      txt: this.editForm.get(['txt']).value
     };
   }
 

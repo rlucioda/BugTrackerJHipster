@@ -44,6 +44,7 @@ describe('Ticket e2e test', () => {
       ticketUpdatePage.setTitleInput('title'),
       ticketUpdatePage.setDescriptionInput('description'),
       ticketUpdatePage.setDueDateInput('2000-12-31'),
+      ticketUpdatePage.setTxtInput('txt'),
       ticketUpdatePage.projectSelectLastOption(),
       ticketUpdatePage.assignedToSelectLastOption()
       // ticketUpdatePage.labelSelectLastOption(),
@@ -59,6 +60,15 @@ describe('Ticket e2e test', () => {
       await ticketUpdatePage.getDoneInput().click();
       expect(await ticketUpdatePage.getDoneInput().isSelected(), 'Expected done to be selected').to.be.true;
     }
+    const selectedStatus = ticketUpdatePage.getStatusInput();
+    if (await selectedStatus.isSelected()) {
+      await ticketUpdatePage.getStatusInput().click();
+      expect(await ticketUpdatePage.getStatusInput().isSelected(), 'Expected status not to be selected').to.be.false;
+    } else {
+      await ticketUpdatePage.getStatusInput().click();
+      expect(await ticketUpdatePage.getStatusInput().isSelected(), 'Expected status to be selected').to.be.true;
+    }
+    expect(await ticketUpdatePage.getTxtInput()).to.eq('txt', 'Expected Txt value to be equals to txt');
     await ticketUpdatePage.save();
     expect(await ticketUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 
